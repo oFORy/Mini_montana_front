@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  mini_montana:
+    restart: always
+    container_name: mini_montana
+    build:
+      context: ./Mini_montana
+      target: 'build-stage'
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./Mini_montana:/app
+    ports:
+      - "23230:3000"

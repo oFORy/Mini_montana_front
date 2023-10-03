@@ -197,13 +197,33 @@ export default defineComponent({
     async createAction () {
       const init = window.Telegram?.WebApp.initDataUnsafe      
       let combinedDateTime = null;
-      if(this.date !== null &&  this.time !== null) {
+      if(this.date !== null) {
         // combinedDateTime = this.parseDate(this.date, this.time);
-        combinedDateTime = this.date + ' ' + this.time
+        combinedDateTime = this.date
+        if(this.time !== null) combinedDateTime += ' ' + this.time
       }
       let combinedName = null; 
       if(init?.user?.first_name !== null) {
-        combinedName = init?.user?.first_name + ' ' + init?.user?.last_name
+        combinedName = init?.user?.first_name
+        if(init?.user?.last_name !== null) combinedName += ' ' + init?.user?.last_name
+      }
+
+      var countryName = this.countyOptions.find(x=>x.id===this.country)
+      
+      var actionName;
+      switch (this.actionId) {
+        case 1:
+          actionName = "Выбрана - Доставка"
+          break;
+        case 2:
+          actionName = "Выбран - Офис"
+          break;
+        case 3:
+          actionName = "Выбрано - Время"
+          break;
+      
+        default:
+          break;
       }
 
       var formData = new FormData();
@@ -211,9 +231,12 @@ export default defineComponent({
       formData.append('UserLogin', init?.user?.username ?? null);
       formData.append('UserId', init?.user?.id ?? null);
       formData.append('SelectedDateTime', combinedDateTime ?? null);
-      formData.append('IdCurrency', this.currentCurrency?.id);
+      formData.append('CurrencyId', this.currentCurrency?.id);
+      formData.append('CurrencyName', this.currentCurrency?.label);
       formData.append('ActionType', this.actionId);
-      formData.append('IdCountry', this.country);
+      formData.append('ActionTypeName', actionName);
+      formData.append('CountryId', this.country);
+      formData.append('CountryName', countryName?.value);
       formData.append('Files', this.file);
 
       await api

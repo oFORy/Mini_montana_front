@@ -11,4 +11,4 @@ services:
     volumes:
       - ./Mini_montana:/app
     ports:
-      - "23230:3000"
+      - "23430:3000"

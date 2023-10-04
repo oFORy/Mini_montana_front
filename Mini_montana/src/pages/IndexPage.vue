@@ -135,7 +135,7 @@ export default defineComponent({
         { id: 1, value: 'Испания'},
         { id: 2, value: 'Франция'},
         { id: 3, value: 'ОАЭ'},
-        { id: 3, value: 'Мексика'},
+        { id: 4, value: 'Мексика'},
       ],
       allCurrencys: [],
       currencys: [],
@@ -196,7 +196,7 @@ export default defineComponent({
 
     async createAction () {
       const init = window.Telegram?.WebApp.initDataUnsafe      
-      let combinedDateTime = null;
+      let combinedDateTime = '';
       if(this.date !== null) {
         // combinedDateTime = this.parseDate(this.date, this.time);
         combinedDateTime = this.date

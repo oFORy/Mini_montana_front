@@ -36,10 +36,10 @@ export default defineComponent({
     }
   },
   mounted() {
-    window.Telegram.WebApp.MainButton.setText('НАЗАД')
-    window.Telegram.WebApp.MainButton.show()
-    const f = () => this.$route.push({name:'HomePage'})
-    window.Telegram.WebApp.MainButton.onClick(f)
+    // window.Telegram.WebApp.MainButton.setText('НАЗАД')
+    // window.Telegram.WebApp.MainButton.show()
+    // const f = () => this.$route.push({name:'HomePage'})
+    // window.Telegram.WebApp.MainButton.onClick(f)
   }
 })
 </script>
